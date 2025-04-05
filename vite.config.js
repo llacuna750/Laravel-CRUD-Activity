@@ -9,6 +9,6 @@ export default defineConfig({
         }),
     ],
     build: {
-        outDir: 'dist', // This will set the output directory to 'dist'
+        outDir: 'dist', // Optional: change this if needed
     }
 });
