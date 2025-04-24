@@ -1,0 +1,1 @@
+<img src="{{ asset('images/slur.jpg') }}"  alt="slur" class="h-9 w-auto" >
