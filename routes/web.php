@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\TemperatureRecordController;
+
 
 
 
@@ -35,7 +37,16 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard/product/{product}/edit', [ProductController::class, 'edit'])->name('product.edit');    
     Route::put('/dashboard/product/{product}/update', [ProductController::class, 'update'])->name('product.update');    
     Route::delete('/dashboard/product/{product}/destroy', [ProductController::class, 'destroy'])->name('product.destroy'); 
-    
+
+    // Temperature Records
+    Route::get('/temperature', [TemperatureRecordController::class, 'index'])->name('temperature.index');
+    Route::get('/temperature/create', [TemperatureRecordController::class, 'create'])->name('temperature.create');
+    Route::post('/temperature', [TemperatureRecordController::class, 'store'])->name('temperature.store');
+    Route::get('/temperature/{id}/edit', [TemperatureRecordController::class, 'edit'])->name('temperature.edit');
+    Route::put('/temperature/{id}', [TemperatureRecordController::class, 'update'])->name('temperature.update');
+    Route::delete('/temperature/{id}', [TemperatureRecordController::class, 'destroy'])->name('temperature.destroy');
+
+    Route::get('/temperature/export-pdf', [TemperatureRecordController::class, 'exportPDF'])->name('temperature.export-pdf');
 });
 
 require __DIR__.'/auth.php';
