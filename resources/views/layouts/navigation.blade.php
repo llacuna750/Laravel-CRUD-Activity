@@ -20,15 +20,15 @@
                         {{ __('Clients') }}
                     </x-nav-link>
 
-                    
-
-                    <x-nav-link :href="route('product.index')" :active="request()->routeIs('product.*')"> 
-                        {{ __('Buy Product') }} 
-</x-nav-link>
 
 
+                    <x-nav-link :href="route('product.index')" :active="request()->routeIs('product.*')">
+                        {{ __('Buy Product') }}
+                    </x-nav-link>
 
-
+                    <x-nav-link :href="route('temperatures.index')" :active="request()->routeIs('temperatures.*')">
+                        {{ __('Smart Home Temperature') }}
+                    </x-nav-link>
 
                 </div>
             </div>
@@ -38,7 +38,11 @@
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
                         <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none transition ease-in-out duration-150">
-                        <x-userprofile class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200" />
+                            @if(auth()->user()->avatar)
+                                <img src="{{ asset('storage/' . auth()->user()->avatar) }}" class="w-8 h-6 rounded-full" alt="User Avatar">
+                                @else
+                                <img src="{{ asset('default-avatar.png') }}" class="w-1 h-1 rounded-full" alt="Default Avatar">
+                                @endif
                             <div>{{ Auth::user()->name }}</div>
 
                             <div class="ms-1">
@@ -59,7 +63,7 @@
                             @csrf
 
                             <x-dropdown-link :href="route('logout')"
-                                    onclick="event.preventDefault();
+                                onclick="event.preventDefault();
                                                 this.closest('form').submit();">
                                 {{ __('Log Out') }}
                             </x-dropdown-link>
@@ -105,7 +109,7 @@
                     @csrf
 
                     <x-responsive-nav-link :href="route('logout')"
-                            onclick="event.preventDefault();
+                        onclick="event.preventDefault();
                                         this.closest('form').submit();">
                         {{ __('Log Out') }}
                     </x-responsive-nav-link>

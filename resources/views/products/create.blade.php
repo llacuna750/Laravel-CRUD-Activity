@@ -1,11 +1,27 @@
+<x-app-layout>
+        <x-slot name="header">
+            <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+                Product
+            </h2>
+        </x-slot>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create</title>
+    <style>
+        .whitebackground {
+                background-color: white;
+                height: 500px;
+                /* margin: 3px; */
+                padding: 10px;
+            }
+    </style>
 </head>
 <body>
+<div class="whitebackground">
     <h1>Create a Product</h1>
     <div>
         @if($errors->any()) 
@@ -41,5 +57,8 @@
             <input type="submit" value="Save a New Proudct" />
         </div>
     </form>
+    <div >
 </body>
 </html>
+
+</x-app-layout>
