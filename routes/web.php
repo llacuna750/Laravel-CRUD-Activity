@@ -6,9 +6,7 @@ use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TemperatureController;
-
-
-
+use App\Http\Controllers\TemperatureReadingController;
 
 
 Route::get('/', function () {
@@ -19,6 +17,9 @@ Route::get('/dashboard', function () {
     return view('dashboard');
     return view('dashboard', compact('customers'));
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -48,6 +49,11 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
+
+    Route::resource('rooms', \App\Http\Controllers\RoomController::class);
+    Route::resource('devices', \App\Http\Controllers\DeviceController::class);
+    Route::resource('temperature-readings', TemperatureReadingController::class);
+    Route::get('/temperature-readings-pdf', [TemperatureReadingController::class, 'exportPdf'])->name('temperature-readings.exportPdf');
 }); 
 
 

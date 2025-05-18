@@ -15,6 +15,12 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(TemperatureSeeder::class);
 
+
+        $this->call([
+            RoomSeeder::class,
+            DeviceSeeder::class,
+            TemperatureReadingSeeder::class,
+        ]);
         // User::factory()->create([
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
